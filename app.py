@@ -1,9 +1,7 @@
-# pip install beautifulsoup4
 import pandas as pd
 import numpy as np
 import requests
-import bs4
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import streamlit as st
 import re
 
@@ -23,7 +21,7 @@ submit_button = url_input_form.form_submit_button(label='Submit', )
 
 if submit_button:
     page = requests.get(url)
-    soup = bs4.BeautifulSoup(page.content, "html.parser")
+    soup = BeautifulSoup(page.content, "html.parser")
     cars = soup.find_all("div", class_="vehicle-card")
     year_all = []
     mileage_all = []
