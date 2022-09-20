@@ -1,3 +1,4 @@
+!pip install beautifulsoup4
 import pandas as pd
 import numpy as np
 import requests
