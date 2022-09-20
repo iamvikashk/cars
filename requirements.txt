@@ -1,6 +1,0 @@
-pandas
-numpy
-requests
-bs4
-streamlit
-re
