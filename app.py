@@ -26,9 +26,10 @@ if submit_button:
     mileage_all = []
     price_all = []
     name_all = []
-    url_all = []
+    url_details_all = []
     for car in cars:
-        url = car.find(href=re.compile("/vehicledetail.+?/"), class_="vehicle-card-link")
+        url_details = car.find(href=re.compile("/vehicledetail.+?/"), class_="vehicle-card-link")
+        url_details = "https://www.cars.com" + url_details['href']
         year = int(car.find("h2", class_="title").text.strip()[0:5])
         mileage = int(car.find("div", class_="mileage").text.strip()[0:-3].replace(',',''))
         if car.find("span", class_="primary-price").text.strip() == "Not Priced":
@@ -40,8 +41,9 @@ if submit_button:
         mileage_all.append(mileage)
         price_all.append(price)
         name_all.append(name)
-        url_all.append("https://www.cars.com" + url['href'])
-    data = pd.DataFrame({"year":year_all, "mileage":mileage_all, "price": price_all, "name": name_all, "url": url_all})
+        url_details_all.append(url_details)
+        
+    data = pd.DataFrame({"year":year_all, "mileage":mileage_all, "price": price_all, "name": name_all, "url": url_details_all})
     data = data[data["price"] > 0]
     data["year_rank"] = data["year"].rank()
     data["mileage_rank"] = data["mileage"].rank(ascending=False)
