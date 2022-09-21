@@ -15,7 +15,7 @@ st.markdown(hide_table_row_index, unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center'>Choose my car</h1>", unsafe_allow_html=True)
 st.text("Have trouble selecting a car from the list of cars? We can help you.")
 url_input_form = st.form("url_input_form", clear_on_submit=True)
-url = url_input_form.text_input("Paste cars.com URL")
+url = url_input_form.text_input("Search for a car on cars.com and paste the URL")
 submit_button = url_input_form.form_submit_button(label='Submit', )
 
 if submit_button:
@@ -42,7 +42,7 @@ if submit_button:
         price_all.append(price)
         name_all.append(name)
         url_details_all.append(url_details)
-        
+
     data = pd.DataFrame({"year":year_all, "mileage":mileage_all, "price": price_all, "name": name_all, "url": url_details_all})
     data = data[data["price"] > 0]
     data["year_rank"] = data["year"].rank()
